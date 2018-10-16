@@ -13,9 +13,9 @@ namespace Digits1
         {
             if (x > 9)
             {
-                return GetDigits(x / 10);
+                GetDigits(x / 10);
             }
-            Console.WriteLine($"{x}");
+            Console.WriteLine($"{x % 10}");
             return 0;
         }
 
