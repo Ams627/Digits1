@@ -9,21 +9,31 @@ namespace Digits1
 {
     internal class Program
     {
-        static int GetDigits(int x)
+        static IEnumerable<int> GetDigits(int x)
         {
-            if (x > 9)
+            int divisor = 1000_000_000;
+            while (x < divisor)
             {
-                GetDigits(x / 10);
+                divisor /= 10;
             }
-            Console.WriteLine($"{x % 10}");
-            return 0;
+
+            while (divisor > 0)
+            {
+                yield return x / divisor;
+                x %= divisor;
+                divisor /= 10;
+            }
         }
+
 
         private static void Main(string[] args)
         {
             try
             {
-                GetDigits(12345);
+                foreach (var d in GetDigits(12345))
+                {
+                    Console.WriteLine(d);
+                }
             }
             catch (Exception ex)
             {
